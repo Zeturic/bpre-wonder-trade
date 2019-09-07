@@ -8,8 +8,8 @@
     .importobj "build/linked.o"
 .endarea
 
-// Player house PC script tile (for debugging)
-.org 0x083B977C
-.word WonderTradeScript
+// // Player house PC script tile (for debugging)
+// .org 0x083B977C
+// .word WonderTradeScript
 
 .close
