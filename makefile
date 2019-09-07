@@ -23,7 +23,7 @@ endif
 
 MAIN_ASM_INCLUDES = $(wildcard *.s)
 
-CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c -I include
+CFLAGS = -O2 -mlong-calls -Wall -Wextra -mthumb -mno-thumb-interwork -fno-inline -fno-builtin -std=gnu11 -mabi=apcs-gnu -mcpu=arm7tdmi -march=armv4t -mtune=arm7tdmi -c -I include -Wa,--defsym,SPECIAL_GenerateRandomPokemon=$(SPECIAL_GenerateRandomPokemon)
 
 LD = $(PREFIX)ld
 LDFLAGS = --relocatable -T rom.ld
@@ -35,7 +35,7 @@ PREPROC = tools/preproc/preproc
 SCANINC = tools/scaninc/scaninc
 
 ARMIPS ?= armips
-ARMIPS_FLAGS = -sym test.sym
+ARMIPS_FLAGS = -sym test.sym -equ SPECIAL_GenerateRandomPokemon $(SPECIAL_GenerateRandomPokemon)
 
 PYTHON ?= python
 FREESIA = $(PYTHON) tools/freesia

@@ -24,7 +24,7 @@ WonderTradeScript::
     msgbox sText_SearchAndFindPartner MSGBOX_AUTOCLOSE
 
     @ load the Pokemon to be traded to the player
-    callnative GenerateRandomPokemon
+    special GenerateRandomPokemon
     @ DoInGameTradeScene needs the player's Pokemon to be on 0x8005
     copyvar VAR_0x8005, VAR_0x8004
     @ actually do the trade animation

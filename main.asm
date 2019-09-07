@@ -12,4 +12,9 @@
 // .org 0x083B977C
 // .word WonderTradeScript
 
+.org gSpecials + SPECIAL_GenerateRandomPokemon * 4
+.word GenerateRandomPokemon |1
+
 .close
+
+.definelabel gSpecials, readu32("rom.gba", 0x08069F18 & 0x1FFFFFF)
