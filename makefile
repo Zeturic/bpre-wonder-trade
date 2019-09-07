@@ -71,7 +71,7 @@ build/src/%.o: src/%.c charmap.txt
 
 build/data/%.o: data/%.s charmap.txt
 	@mkdir -p build/data
-	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler -o "$@" -
+	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler-with-cpp -o "$@" -
 
 build/linked.o: $(OBJ_FILES) rom.ld
 	@mkdir -p build
