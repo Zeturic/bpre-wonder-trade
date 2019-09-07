@@ -9,4 +9,8 @@ struct PACKED Trainer
     u8 unk_24[7];
 };
 
-extern const struct Trainer gTrainers[];
+// extern const struct Trainer gTrainers[];
+
+typedef const struct Trainer TrainerArray[];
+extern const TrainerArray * const gTrainersPtr;
+#define gTrainers (*gTrainersPtr)
