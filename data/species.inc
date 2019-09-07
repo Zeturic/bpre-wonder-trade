@@ -1,0 +1,1 @@
+.set SPECIES_EGG, 412
