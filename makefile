@@ -15,7 +15,11 @@ SRC_OBJ_FILES = $(SRC_FILES:src/%.c=build/src/%.o)
 DATA_FILES = $(wildcard data/*.s)
 DATA_OBJ_FILES = $(DATA_FILES:data/%.s=build/data/%.o)
 
-OBJ_FILES = $(SRC_OBJ_FILES) $(DATA_OBJ_FILES)
+ifeq ($(INSERT_EXAMPLE_SCRIPT),false)
+	OBJ_FILES = $(SRC_OBJ_FILES)
+else
+	OBJ_FILES = $(SRC_OBJ_FILES) $(DATA_OBJ_FILES)
+endif
 
 MAIN_ASM_INCLUDES = $(wildcard *.s)
 
