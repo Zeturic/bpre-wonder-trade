@@ -11,5 +11,4 @@ memcpy = 0x081E5E78 |1;
 gBattleTypeFlags = 0x02022B4C;
 gEnemyParty = 0x0202402C;
 
-/* gTrainers = 0x0823EAC8; */
-gTrainersPtr = 0x0800FC00;
+gTrainers = 0x0823EAC8;
