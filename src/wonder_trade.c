@@ -9,7 +9,7 @@
 #include "constants/battle.h"
 #include "constants/opponents.h"
 
-bool8 GenerateRandomPokemon(void)
+bool8 WonderTradeGenerateMon(void)
 {
     u32 numAttempts;
     u16 len;
@@ -19,7 +19,8 @@ bool8 GenerateRandomPokemon(void)
     numAttempts = 0;
 
     // pick an NPC trainer slot
-    do {
+    do
+    {
         // give up if we've exceeded our number of attempts
         if (++numAttempts > MAX_WONDER_TRADE_ATTEMPTS)
             return FALSE;

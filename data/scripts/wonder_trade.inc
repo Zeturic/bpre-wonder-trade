@@ -24,7 +24,7 @@ WonderTradeScript::
     msgbox sText_SearchForTradePartner MSGBOX_AUTOCLOSE
 
     @ try to find a Pokemon to WT to the player
-    specialvar VAR_RESULT GenerateRandomPokemon
+    specialvar VAR_RESULT WonderTradeGenerateMon
     compare VAR_RESULT 0
     goto_if_eq WonderTradeScript_TimedOut
 

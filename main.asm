@@ -12,8 +12,8 @@
 // .org 0x083B977C
 // .word WonderTradeScript
 
-.org gSpecials + SPECIAL_GenerateRandomPokemon * 4
-.word GenerateRandomPokemon |1
+.org gSpecials + SPECIAL_WonderTradeGenerateMon * 4
+.word WonderTradeGenerateMon |1
 
 .close
 
