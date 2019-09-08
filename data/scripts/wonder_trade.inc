@@ -21,10 +21,15 @@ WonderTradeScript::
     compare VAR_RESULT SPECIES_EGG
     goto_if_eq WonderTradeScript_PlayerChoseEgg
 
-    msgbox sText_SearchAndFindPartner MSGBOX_AUTOCLOSE
+    msgbox sText_SearchForTradePartner MSGBOX_AUTOCLOSE
 
-    @ load the Pokemon to be traded to the player
-    special GenerateRandomPokemon
+    @ try to find a Pokemon to WT to the player
+    specialvar VAR_RESULT GenerateRandomPokemon
+    compare VAR_RESULT 0
+    goto_if_eq WonderTradeScript_TimedOut
+
+    msgbox sText_TradePartnerWasFound MSGBOX_AUTOCLOSE
+
     @ DoInGameTradeScene needs the player's Pokemon to be on 0x8005
     copyvar VAR_0x8005, VAR_0x8004
     @ actually do the trade animation
@@ -42,6 +47,10 @@ WonderTradeScript_PlayerChoseEgg:
     msgbox sText_EggsCantBeTraded MSGBOX_AUTOCLOSE
     goto WonderTradeScript_EarlyEnd
 
+WonderTradeScript_TimedOut:
+    msgbox sText_TradePartnerCouldntBeFound MSGBOX_AUTOCLOSE
+    goto WonderTradeScript_EarlyEnd
+
 sText_WantToStartWonderTrade:
     .string "Would you like to start a\nWONDER TRADE?$"
 sText_ComeBackToWonderTrade:
@@ -50,5 +59,9 @@ sText_ChoosePokemonToTrade:
     .string "Please choose the POKéMON you\nwish to trade.$"
 sText_EggsCantBeTraded:
     .string "I'm sorry, but EGGs cannot be\ntraded.$"
-sText_SearchAndFindPartner:
-    .string "Searching for a trade partner...\nPlease wait.\pA trade partner has been found!\nThe trade will now start.$"
+sText_SearchForTradePartner:
+    .string "Searching for a trade partner...\nPlease wait.$"
+sText_TradePartnerWasFound:
+    .string "A trade partner has been found!\nThe trade will now start.$"
+sText_TradePartnerCouldntBeFound:
+    .string "A trade partner could not be found.\nPlease try again later.$"

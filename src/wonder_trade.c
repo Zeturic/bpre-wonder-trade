@@ -9,14 +9,21 @@
 #include "constants/battle.h"
 #include "constants/opponents.h"
 
-void GenerateRandomPokemon(void)
+bool8 GenerateRandomPokemon(void)
 {
+    u32 numAttempts;
     u16 len;
     u16 trainerNum;
     u8 slot;
-    
+
+    numAttempts = 0;
+
     // pick an NPC trainer slot
     do {
+        // give up if we've exceeded our number of attempts
+        if (++numAttempts > MAX_WONDER_TRADE_ATTEMPTS)
+            return FALSE;
+
         trainerNum = Random() % TRAINERS_COUNT;
         len = StringLength12(gTrainers[trainerNum].trainerName);
     } while(len == 0 || PLAYER_NAME_LENGTH < len || gTrainers[trainerNum].partySize == 0 || IS_BLACKLISTED(trainerNum));
@@ -33,8 +40,11 @@ void GenerateRandomPokemon(void)
     // weirdly, the game leaves your name as the OT Name of NPC trainer's Pokemon
     SetMonData(&gEnemyParty[0], MON_DATA_OT_NAME, gTrainers[trainerNum].trainerName);
 
+    // set met location to "in-game trade"
     u8 metLocation = 0xFE;
     SetMonData(&gEnemyParty[0], MON_DATA_MET_LOCATION, &metLocation);
+
+    return TRUE;
 }
 
 u16 StringLength12(const u8 *str)
