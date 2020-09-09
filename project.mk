@@ -24,6 +24,6 @@ build/data/%.o: data/%.s charmap.txt
 
 build/dep/data/%.d: data/%.s
 	@mkdir -p build/dep/data
-	@$(SCANINC) -I "" $< | awk '{print "$(<:data/%.s=build/data/%.o) $@ : "$$0}' > "$@"
+	@$(SCANINC) $(HEADER_DIRS) $< | awk '{print "$(<:data/%.s=build/data/%.o) $@ : "$$0}' > "$@"
 	
 include $(DATA_FILES:data/%.s=build/dep/data/%.d)
