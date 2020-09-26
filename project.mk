@@ -20,10 +20,6 @@ endif
 
 build/data/%.o: data/%.s charmap.txt
 	@mkdir -p build/data
-	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler-with-cpp -o "$@" -
+	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler-with-cpp -MF "$(@:%.o=%.d)" -MT "$@" -o "$@" -
 
-build/dep/data/%.d: data/%.s
-	@mkdir -p build/dep/data
-	@$(SCANINC) $(HEADER_DIRS) $< | awk '{print "$(<:data/%.s=build/data/%.o) $@ : "$$0}' > "$@"
-	
-include $(DATA_FILES:data/%.s=build/dep/data/%.d)
+-include $(DATA_FILES:data/%.s=build/data/%.d)
