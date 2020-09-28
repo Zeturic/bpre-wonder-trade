@@ -20,6 +20,6 @@ endif
 
 build/data/%.o: data/%.s charmap.txt
 	@mkdir -p build/data
-	(echo '#line 1 "$<"' && $(PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler-with-cpp -MF "$(@:%.o=%.d)" -MT "$@" -o "$@" -
+	(echo '#line 1 "$<"' && $(PRET_PREPROC) "$<" charmap.txt) | $(CC) $(CFLAGS) -x assembler-with-cpp -MF "$(@:%.o=%.d)" -MT "$@" -o "$@" -
 
 -include $(DATA_FILES:data/%.s=build/data/%.d)
