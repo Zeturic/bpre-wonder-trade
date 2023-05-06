@@ -5,7 +5,9 @@
 
 .org allocation
 .area allocation_size
+    .word 0xFEFEFEFE
     .importobj "build/linked.o"
+    .word 0xFEFEFEFE
 .endarea
 
 // // Player house PC script tile (for debugging)
